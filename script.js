@@ -1,5 +1,5 @@
 // Scroll fade-in for gallery items
-const observer = new IntersectionObserver((entries) => {
+const fadeObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
@@ -10,5 +10,22 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 document.querySelectorAll('.gallery-item').forEach(item => {
-  observer.observe(item);
+  fadeObserver.observe(item);
 });
+
+// 037 video: auto pause when scrolled away, auto play when visible
+const video037 = document.getElementById('video037');
+if (video037) {
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        video037.play();
+      } else {
+        video037.pause();
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+  videoObserver.observe(video037);
+}
