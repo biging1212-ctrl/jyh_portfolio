@@ -330,7 +330,7 @@ img, video { display: block; width: 100%; }
 .portfolio-slot {
   position: relative;
   width: 100%;
-  aspect-ratio: 1440 / 세로px;
+  /* aspect-ratio: 16 / 9;  ← 이 줄 삭제 */
   background: #0a0a0a;
   overflow: hidden;
   line-height: 0;
@@ -339,8 +339,8 @@ img, video { display: block; width: 100%; }
 .portfolio-slot img,
 .portfolio-slot video {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;        /* ← cover에서 auto로 변경 */
+  object-fit: unset;   /* ← cover 제거 */
   display: block;
 }
 
