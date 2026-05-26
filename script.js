@@ -53,7 +53,8 @@
 })();
 
 // ── Config ──
-const TOTAL_PAGES = 84; // pages 2–67 (page 68 = closing HTML)
+const TOTAL_PAGES = 84; // pages 2–85 (page 86 = closing HTML)
+const FINAL_PAGE_TOTAL = 86;
 const STORAGE_KEY = 'portfolio_slots';
 
 // ── Load saved slots from localStorage ──
@@ -82,7 +83,7 @@ for (let i = 1; i <= TOTAL_PAGES; i++) {
   // page number badge
   const numBadge = document.createElement('span');
   numBadge.className   = 'slot-num';
-  numBadge.textContent = `${String(pageNum).padStart(2, '0')} / 68`;
+  numBadge.textContent = `${String(pageNum).padStart(2, '0')} / ${FINAL_PAGE_TOTAL}`;
   slot.appendChild(numBadge);
 
   // upload zone
@@ -101,9 +102,7 @@ for (let i = 1; i <= TOTAL_PAGES; i++) {
   const fileInput = zone.querySelector('input[type="file"]');
 
   // ── Auto-load from assets folder ──
-  const padded  = String(pageNum).padStart(2, '0');
-  const videoSrc = `assets/videos/page-${padded}.mp4`;
-  const imgExts  = ['jpg', 'jpeg', 'png', 'webp'];
+  })(slot, zone, videoSrc, pageNum);
 
   function tryLoadImage(s, z, exts, idx) {
     if (idx >= exts.length) {

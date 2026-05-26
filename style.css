@@ -330,7 +330,7 @@ img, video { display: block; width: 100%; }
 .portfolio-slot {
   position: relative;
   width: 100%;
-  /* aspect-ratio: 16 / 9;  ← 이 줄 삭제 */
+  min-height: 56.25vw; /* 이미지가 안 떠도 16:9 한 장 높이는 유지 */
   background: #0a0a0a;
   overflow: hidden;
   line-height: 0;
@@ -339,8 +339,7 @@ img, video { display: block; width: 100%; }
 .portfolio-slot img,
 .portfolio-slot video {
   width: 100%;
-  height: auto;        /* ← cover에서 auto로 변경 */
-  object-fit: unset;   /* ← cover 제거 */
+  height: auto;
   display: block;
 }
 
@@ -411,7 +410,8 @@ img, video { display: block; width: 100%; }
 .closing-page {
   position: relative;
   width: 100%;
-  aspect-ratio: 1440 / 세로px;
+  height: 100vh;
+  min-height: 500px;
   background: #000000;
   overflow: hidden;
 }
