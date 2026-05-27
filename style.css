@@ -343,6 +343,10 @@ img, video { display: block; width: 100%; }
   display: block;
 }
 
+.portfolio-slot:has(.upload-zone:not(.hidden)) {
+  min-height: 56.25vw;
+}
+
 /* fade in when image loads */
 .portfolio-slot img {
   opacity: 0;
