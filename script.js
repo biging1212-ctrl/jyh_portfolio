@@ -71,7 +71,7 @@ const section = document.getElementById('portfolio');
 const saved   = loadSaved();
 
 for (let i = 1; i <= TOTAL_PAGES; i++) {
-  const pageNum = i + 1; // pages 2–46
+  const pageNum = i + 1; // pages 2–85
   const slot    = document.createElement('div');
   slot.className   = 'portfolio-slot';
   slot.dataset.index = i;
@@ -101,48 +101,77 @@ for (let i = 1; i <= TOTAL_PAGES; i++) {
   const fileInput = zone.querySelector('input[type="file"]');
 
   // ── Auto-load from assets folder ──
-  const padded  = String(pageNum).padStart(2, '0');
-  const videoSrc = `assets/videos/page-${padded}.mp4`;
-  const imgExts  = ['jpg', 'jpeg', 'png', 'webp'];
+  const padded2 = String(pageNum).padStart(2, '0');
+  const padded3 = String(pageNum).padStart(3, '0');
 
-  function tryLoadImage(s, z, exts, idx) {
-    if (idx >= exts.length) {
-      const sv = loadSaved();
-      if (sv[s.dataset.index]) renderMedia(s, z, sv[s.dataset.index].type, sv[s.dataset.index].src);
+  // page-02 / page-002 둘 다 시도
+  const pageNames = [`page-${padded2}`, `page-${padded3}`];
+
+  function loadSavedSlot() {
+    const sv = loadSaved();
+    if (sv[slot.dataset.index]) {
+      renderMedia(slot, zone, sv[slot.dataset.index].type, sv[slot.dataset.index].src);
+    }
+  }
+
+  function tryImage(index = 0) {
+    if (index >= pageNames.length) {
+      console.warn(`이미지를 찾지 못했습니다: ${pageNames.join(', ')}`);
+      loadSavedSlot();
       return;
     }
-    const src  = `assets/images/page-${s.querySelector('.slot-num').textContent.slice(0,2)}.${exts[idx]}`;
+
+    const src = `assets/images/${pageNames[index]}.webp`;
     const test = new Image();
-    test.onload  = () => renderMedia(s, z, 'image', src);
-    test.onerror = () => tryLoadImage(s, z, exts, idx + 1);
+
+    test.onload = () => {
+      renderMedia(slot, zone, 'image', src);
+    };
+
+    test.onerror = () => {
+      tryImage(index + 1);
+    };
+
     test.src = src;
   }
 
-  (function (s, z, vSrc, pg) {
-    const padPg = String(pg).padStart(2, '0');
-    const vidEl = document.createElement('video');
-    vidEl.oncanplay = () => { vidEl.remove(); renderMedia(s, z, 'video', vSrc); };
-    vidEl.onerror   = () => {
-      vidEl.remove();
-      // try image extensions
-      const exts = ['jpg', 'jpeg', 'png', 'webp'];
-      function tryImg(idx) {
-        if (idx >= exts.length) {
-          const sv = loadSaved();
-          if (sv[s.dataset.index]) renderMedia(s, z, sv[s.dataset.index].type, sv[s.dataset.index].src);
-          return;
-        }
-        const src  = `assets/images/page-${padPg}.${exts[idx]}`;
-        const test = new Image();
-        test.onload  = () => renderMedia(s, z, 'image', src);
-        test.onerror = () => tryImg(idx + 1);
-        test.src = src;
-      }
-      tryImg(0);
+  function tryVideo(index = 0) {
+    if (index >= pageNames.length) {
+      tryImage();
+      return;
+    }
+
+    const src = `assets/videos/${pageNames[index]}.mp4`;
+    const testVideo = document.createElement('video');
+
+    let finished = false;
+
+    const success = () => {
+      if (finished) return;
+      finished = true;
+      clearTimeout(timer);
+      testVideo.remove();
+      renderMedia(slot, zone, 'video', src);
     };
-    vidEl.src     = vSrc;
-    vidEl.preload = 'metadata';
-  })(slot, zone, videoSrc, pageNum);
+
+    const fail = () => {
+      if (finished) return;
+      finished = true;
+      clearTimeout(timer);
+      testVideo.remove();
+      tryVideo(index + 1);
+    };
+
+    const timer = setTimeout(fail, 4000);
+
+    testVideo.onloadedmetadata = success;
+    testVideo.onerror = fail;
+    testVideo.preload = 'metadata';
+    testVideo.src = src;
+    testVideo.load();
+  }
+
+  tryVideo();
 
   // ── File input change ──
   fileInput.addEventListener('change', (e) => {
