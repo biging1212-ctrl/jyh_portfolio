@@ -89,18 +89,80 @@ for (let i = 1; i <= TOTAL_PAGES; i++) {
   const zone = document.createElement('div');
   zone.className = 'upload-zone';
   zone.innerHTML = `
-    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-      <path d="M12 16V8M8 12l4-4 4 4"/>
-      <rect x="3" y="3" width="18" height="18" rx="2" stroke-opacity=".4"/>
-    </svg>
-    <span class="upload-label">이미지 또는 영상을 드래그하거나 클릭하여 업로드</span>
-    <input type="file" accept="image/*,video/*" />
+    <div class="loading-dot"></div>
+  <span class="upload-label">로딩 중입니다. 잠시만 기다려주세요.</span>
+  <input type="file" accept="image/*,video/*" />
   `;
   slot.appendChild(zone);
 
   const fileInput = zone.querySelector('input[type="file"]');
 
-  // ── Auto-load from assets folder ──
+  })(slot, zone, videoSrc, pageNum);
+
+ // ── Auto-load from assets folder ──
+  const padded = String(pageNum).padStart(2, '0');
+
+  const imageSrc = `assets/images/page-${padded}.webp`;
+  const videoSrc = `assets/videos/page-${padded}.mp4`;
+
+  function loadSavedSlot() {
+    const sv = loadSaved();
+    if (sv[slot.dataset.index]) {
+      renderMedia(slot, zone, sv[slot.dataset.index].type, sv[slot.dataset.index].src);
+    }
+  }
+
+  function tryMedia() {
+    let rendered = false;
+
+    function finish(type, src) {
+      if (rendered) return;
+      rendered = true;
+      renderMedia(slot, zone, type, src);
+    }
+
+    function failCheck() {
+      if (rendered) return;
+
+      console.warn(`파일을 찾지 못했습니다: ${imageSrc} 또는 ${videoSrc}`);
+      loadSavedSlot();
+    }
+
+    // 이미지 먼저 시도
+    const testImg = new Image();
+
+    testImg.onload = () => {
+      finish('image', imageSrc);
+    };
+
+    testImg.onerror = () => {
+      // 이미지가 없으면 그냥 영상 결과를 기다림
+    };
+
+    testImg.src = imageSrc;
+
+    // 영상도 동시에 시도
+    const testVideo = document.createElement('video');
+
+    testVideo.onloadedmetadata = () => {
+      finish('video', videoSrc);
+      testVideo.remove();
+    };
+
+    testVideo.onerror = () => {
+      testVideo.remove();
+    };
+
+    testVideo.preload = 'metadata';
+    testVideo.src = videoSrc;
+    testVideo.load();
+
+    // 둘 다 안 잡히면 콘솔에만 경고
+    setTimeout(failCheck, 6000);
+  }
+
+  tryMedia();
+
   const padded2 = String(pageNum).padStart(2, '0');
   const padded3 = String(pageNum).padStart(3, '0');
 
@@ -214,6 +276,7 @@ function handleFile(slot, zone, file, index) {
 function renderMedia(slot, zone, type, src) {
   slot.querySelectorAll('img, video').forEach((el) => el.remove());
   zone.classList.add('hidden');
+  slot.classList.add('is-loaded');
 
   if (type === 'video') {
     const vid = document.createElement('video');
@@ -228,7 +291,7 @@ function renderMedia(slot, zone, type, src) {
     const img = document.createElement('img');
     img.src     = src;
     img.alt     = '';
-    img.loading = 'lazy';
+    img.loading = 'eager';
     img.decoding = 'async';
     img.onload  = () => img.classList.add('loaded');
     slot.appendChild(img);
