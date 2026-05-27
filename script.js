@@ -277,6 +277,7 @@ function renderMedia(slot, zone, type, src) {
   slot.querySelectorAll('img, video').forEach((el) => el.remove());
   zone.classList.add('hidden');
   slot.classList.add('is-loaded');
+  slot.classList.add('is-loaded');
 
   if (type === 'video') {
     const vid = document.createElement('video');
