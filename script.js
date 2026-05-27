@@ -94,7 +94,7 @@ for (let i = 1; i <= TOTAL_PAGES; i++) {
       <path d="M12 16V8M8 12l4-4 4 4"/>
       <rect x="3" y="3" width="18" height="18" rx="2" stroke-opacity=".4"/>
     </svg>
-    <span class="upload-label">이미지 또는 영상을 드래그하거나 클릭하여 업로드</span>
+    <span class="upload-label">로딩 중입니다. 잠시만 기다려주세요.</span>
     <input type="file" accept="image/*,video/*" />
   `;
   slot.appendChild(zone);
@@ -102,48 +102,59 @@ for (let i = 1; i <= TOTAL_PAGES; i++) {
   const fileInput = zone.querySelector('input[type="file"]');
 
   // ── Auto-load from assets folder ──
-  const padded  = String(pageNum).padStart(2, '0');
-  const videoSrc = `assets/videos/page-${padded}.mp4`;
-  const imgExts  = ['jpg', 'jpeg', 'png', 'webp'];
+  const padded2 = String(pageNum).padStart(2, '0');
+  const padded3 = String(pageNum).padStart(3, '0');
 
-  function tryLoadImage(s, z, exts, idx) {
-    if (idx >= exts.length) {
-      const sv = loadSaved();
-      if (sv[s.dataset.index]) renderMedia(s, z, sv[s.dataset.index].type, sv[s.dataset.index].src);
+  const candidates = [
+    { type: 'image', src: `assets/images/page-${padded2}.webp` },
+    { type: 'image', src: `assets/images/page-${padded2}.gif` },
+    { type: 'video', src: `assets/videos/page-${padded2}.mp4` },
+    { type: 'video', src: `assets/videos/page-${padded2}.gif` },
+
+  ];
+
+  function tryCandidate(index = 0) {
+    if (index >= candidates.length) {
+      console.warn(`page-${padded2} 파일을 찾지 못했습니다.`);
       return;
     }
-    const src  = `assets/images/page-${s.querySelector('.slot-num').textContent.slice(0,2)}.${exts[idx]}`;
-    const test = new Image();
-    test.onload  = () => renderMedia(s, z, 'image', src);
-    test.onerror = () => tryLoadImage(s, z, exts, idx + 1);
-    test.src = src;
+
+    const item = candidates[index];
+
+    if (item.type === 'image') {
+      const testImg = new Image();
+
+      testImg.onload = () => {
+        renderMedia(slot, zone, 'image', item.src);
+      };
+
+      testImg.onerror = () => {
+        tryCandidate(index + 1);
+      };
+
+      testImg.src = item.src;
+    }
+
+    if (item.type === 'video') {
+      const testVideo = document.createElement('video');
+
+      testVideo.onloadedmetadata = () => {
+        testVideo.remove();
+        renderMedia(slot, zone, 'video', item.src);
+      };
+
+      testVideo.onerror = () => {
+        testVideo.remove();
+        tryCandidate(index + 1);
+      };
+
+      testVideo.preload = 'metadata';
+      testVideo.src = item.src;
+      testVideo.load();
+    }
   }
 
-  (function (s, z, vSrc, pg) {
-    const padPg = String(pg).padStart(2, '0');
-    const vidEl = document.createElement('video');
-    vidEl.oncanplay = () => { vidEl.remove(); renderMedia(s, z, 'video', vSrc); };
-    vidEl.onerror   = () => {
-      vidEl.remove();
-      // try image extensions
-      const exts = ['jpg', 'jpeg', 'png', 'webp'];
-      function tryImg(idx) {
-        if (idx >= exts.length) {
-          const sv = loadSaved();
-          if (sv[s.dataset.index]) renderMedia(s, z, sv[s.dataset.index].type, sv[s.dataset.index].src);
-          return;
-        }
-        const src  = `assets/images/page-${padPg}.${exts[idx]}`;
-        const test = new Image();
-        test.onload  = () => renderMedia(s, z, 'image', src);
-        test.onerror = () => tryImg(idx + 1);
-        test.src = src;
-      }
-      tryImg(0);
-    };
-    vidEl.src     = vSrc;
-    vidEl.preload = 'metadata';
-  })(slot, zone, videoSrc, pageNum);
+  tryCandidate();
 
   // ── File input change ──
   fileInput.addEventListener('change', (e) => {
