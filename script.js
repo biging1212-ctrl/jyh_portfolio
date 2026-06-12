@@ -106,12 +106,9 @@ for (let i = 1; i <= TOTAL_PAGES; i++) {
   const padded3 = String(pageNum).padStart(3, '0');
 
   const candidates = [
-    { type: 'image', src: `assets/images/page-${padded2}.webp` },
-    { type: 'image', src: `assets/images/page-${padded2}.gif` },
-    { type: 'video', src: `assets/videos/page-${padded2}.mp4` },
-    { type: 'video', src: `assets/videos/page-${padded2}.gif` },
-
-  ];
+  { type: 'image', src: `assets/images/page-${padded2}.png` },
+  { type: 'video', src: `assets/videos/page-${padded2}.mp4` },
+];
 
   function tryCandidate(index = 0) {
     if (index >= candidates.length) {
@@ -208,14 +205,28 @@ function renderMedia(slot, zone, type, src) {
     vid.controls    = false;
     slot.appendChild(vid);
   } else {
-    const img = document.createElement('img');
-    img.src     = src;
-    img.alt     = '';
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    img.onload  = () => img.classList.add('loaded');
-    slot.appendChild(img);
+  const img = document.createElement('img');
+
+  img.alt = '';
+  img.loading = 'lazy';
+  img.decoding = 'async';
+
+  img.onload = () => {
+    img.classList.add('loaded');
+  };
+
+  img.onerror = () => {
+    console.warn('이미지 로딩 실패:', src);
+  };
+
+  img.src = src;
+
+  if (img.complete) {
+    img.classList.add('loaded');
   }
+
+  slot.appendChild(img);
+}
 
 }
 
