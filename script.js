@@ -82,9 +82,9 @@ const FINAL_PAGE_TOTAL = 66;
 const STORAGE_KEY = 'portfolio_slots';
 
 const VIDEO_PAGES = new Set([
-  4, 9, 19, 22, 24, 28,
-  30, 38, 42, 43, 44, 47,
-  50, 52, 53, 59, 61, 65
+  6, 10, 15, 16, 31, 33, 36, 38
+  42, 43, 44, 47, 50, 54, 55, 56
+  60, 62, 66, 70, 77, 78
 ]);
 
 // ── Load saved slots from localStorage ──
@@ -128,8 +128,8 @@ if (pageNum === 2) {
   continue;
 }
 
-    // ── PAGE 17: YouTube Video ──
-if (pageNum === 17) {
+    // ── PAGE 48: YouTube Video ──
+if (pageNum === 48) {
   slot.classList.add('youtube-page');
 
   const videoWrap = document.createElement('div');
@@ -406,8 +406,8 @@ function addProjectIndex(slot) {
   const projects = [
     {
       num: '(01)',
-      title: 'WINKLE',
-      desc: 'Beverage Branding',
+      title: 'KIMCHI SAUCE',
+      desc: 'Package',
       image: 'assets/images/project-01.png',
       target: '#page-03',
 
@@ -425,10 +425,10 @@ function addProjectIndex(slot) {
 
     {
       num: '(02)',
-      title: 'KIMCHI SAUCE',
-      desc: 'Product Retail Redesign',
+      title: 'OATERY',
+      desc: 'Brand Package',
       image: 'assets/images/project-02.png',
-      target: '#page-21',
+      target: '#page-20',
 
       imgX: 466,
       imgY: 474,
@@ -442,10 +442,10 @@ function addProjectIndex(slot) {
 
     {
       num: '(03)',
-      title: 'LOTTE CHILLSUNG',
-      desc: 'Sns Content / 실무',
+      title: 'WINKLE',
+      desc: 'Brand Package',
       image: 'assets/images/project-03.png',
-      target: '#page-33',
+      target: '#page-35',
 
       imgX: 732,
       imgY: 474,
@@ -460,9 +460,9 @@ function addProjectIndex(slot) {
     {
       num: '(04)',
       title: 'ORION',
-      desc: 'Promotion Content / 실무',
+      desc: 'Sns Content / 실무',
       image: 'assets/images/project-04.png',
-      target: '#page-40',
+      target: '#page-52',
 
       imgX: 998,
       imgY: 474,
@@ -478,10 +478,10 @@ function addProjectIndex(slot) {
 
     {
       num: '(05)',
-      title: 'BINGGRAE',
+      title: '3.3',
       desc: 'Pop - Up Store / 실무',
       image: 'assets/images/project-05.png',
-      target: '#page-46',
+      target: '#page-58',
 
       imgX: 1264,
       imgY: 474,
@@ -495,10 +495,10 @@ function addProjectIndex(slot) {
 
     {
       num: '(06)',
-      title: '3.3',
-      desc: 'Pop - Up Store / 실무',
+      title: 'BPT',
+      desc: 'Rebranding / 실무',
       image: 'assets/images/project-06.png',
-      target: '#page-57',
+      target: '#page-67',
 
       imgX: 1530,
       imgY: 474,
