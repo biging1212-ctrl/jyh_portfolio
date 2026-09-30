@@ -553,6 +553,144 @@ img, video { display: block; width: 100%; }
   opacity: 1 !important;
 }
 
+
+/* ─────────────────────────────
+   PAGE 15 : RANDOM PHOTO COLLAGE
+───────────────────────────── */
+
+.page15-collage-page {
+  position: relative;
+
+  background: #000000;
+
+  overflow: hidden;
+}
+
+
+.page15-collage {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: #000000;
+
+  overflow: hidden;
+}
+
+
+/* ── PHOTO COMMON ── */
+
+.portfolio-slot .page15-photo {
+  position: absolute;
+
+  display: block;
+
+  object-fit: cover;
+
+  opacity: 0;
+
+  transform:
+    scale(0.05);
+
+  transform-origin: center center;
+
+  transition:
+    transform 0.28s cubic-bezier(.2,.8,.2,1),
+    opacity 0.12s ease;
+
+  pointer-events: none;
+}
+
+
+/* 등장 */
+
+.portfolio-slot .page15-photo.is-visible {
+  opacity: 1;
+
+  transform:
+    scale(1);
+}
+
+/* ── 01 : 좌측 상단 ── */
+
+.page15-photo.photo-01 {
+  left: 0;
+  top: 0;
+
+  width: 21.5%;
+  height: 47%;
+}
+
+
+/* ── 02 : 상단 중앙 왼쪽 ── */
+
+.page15-photo.photo-02 {
+  left: 21.5%;
+  top: 0;
+
+  width: 20.5%;
+  height: 47%;
+}
+
+
+/* ── 03 : 상단 중앙 오른쪽 ── */
+
+.page15-photo.photo-03 {
+  left: 42%;
+  top: 0;
+
+  width: 30%;
+  height: 47%;
+}
+
+
+/* ── 04 : 우측 상단 ── */
+
+.page15-photo.photo-04 {
+  right: 0;
+  top: 0;
+
+  width: 28%;
+  height: 47%;
+}
+
+
+/* ── 05 : 좌측 하단 ── */
+
+.page15-photo.photo-05 {
+  left: 0;
+  bottom: 0;
+
+  width: 21.5%;
+  height: 53%;
+}
+
+
+/* ── 06 : 중앙 하단 ── */
+
+.page15-photo.photo-06 {
+  left: 21.5%;
+  bottom: 0;
+
+  width: 57%;
+  height: 53%;
+}
+
+
+/* ── 07 : 우측 하단 ── */
+
+.page15-photo.photo-07 {
+  right: 0;
+  bottom: 0;
+
+  width: 21.5%;
+  height: 53%;
+}
+
+
 /* ── PAGE 19 : 4 IMAGE SLIDESHOW ── */
 
 .page19-slideshow-page {
