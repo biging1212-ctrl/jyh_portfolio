@@ -82,7 +82,7 @@ const FINAL_PAGE_TOTAL = 79;
 const STORAGE_KEY = 'portfolio_slots';
 
 const VIDEO_PAGES = new Set([
-  15, 16, 33, 36,
+  16, 33, 36,
   50, 54, 55, 56,
   60, 62, 70, 77, 78
 ]);
@@ -343,6 +343,205 @@ if (pageNum === 10) {
     }, 3000);
 
   });
+
+  continue;
+}
+
+  PAGE 10과 PAGE 19 사이에 아래를 넣으세요.
+// ── PAGE 15: RANDOM PHOTO COLLAGE ──
+if (pageNum === 15) {
+
+  slot.classList.add('page15-collage-page');
+
+  const collage = document.createElement('div');
+  collage.className = 'page15-collage';
+
+
+  const photos = [
+
+    {
+      src: 'assets/images/page-15-01.png',
+      className: 'photo-01'
+    },
+
+    {
+      src: 'assets/images/page-15-02.png',
+      className: 'photo-02'
+    },
+
+    {
+      src: 'assets/images/page-15-03.png',
+      className: 'photo-03'
+    },
+
+    {
+      src: 'assets/images/page-15-04.png',
+      className: 'photo-04'
+    },
+
+    {
+      src: 'assets/images/page-15-05.png',
+      className: 'photo-05'
+    },
+
+    {
+      src: 'assets/images/page-15-06.png',
+      className: 'photo-06'
+    },
+
+    {
+      src: 'assets/images/page-15-07.png',
+      className: 'photo-07'
+    }
+
+  ];
+
+
+  const photoElements = [];
+
+
+  photos.forEach((photo) => {
+
+    const img = document.createElement('img');
+
+    img.src = photo.src;
+
+    img.alt = '';
+
+    img.className =
+      `page15-photo ${photo.className}`;
+
+    collage.appendChild(img);
+
+    photoElements.push(img);
+
+  });
+
+
+  slot.appendChild(collage);
+
+  section.appendChild(slot);
+
+
+
+  /* ─────────────────────────
+     RANDOM APPEAR ANIMATION
+  ───────────────────────── */
+
+
+  function shuffle(array) {
+
+    const copy = [...array];
+
+    for (let i = copy.length - 1; i > 0; i--) {
+
+      const j =
+        Math.floor(Math.random() * (i + 1));
+
+      [copy[i], copy[j]] =
+        [copy[j], copy[i]];
+
+    }
+
+    return copy;
+  }
+
+
+
+  function playCollage() {
+
+    /* 모든 사진 초기화 */
+
+    photoElements.forEach((photo) => {
+
+      photo.classList.remove('is-visible');
+
+    });
+
+
+
+    /* 매번 등장 순서 랜덤 */
+
+    const order =
+      shuffle(photoElements);
+
+
+
+    /*
+      한 장씩 등장.
+
+      기본 간격 350ms
+      + 랜덤 간격 0~350ms
+    */
+
+    let accumulatedDelay = 300;
+
+
+    order.forEach((photo) => {
+
+      const randomGap =
+        250 + Math.random() * 350;
+
+
+      accumulatedDelay += randomGap;
+
+
+      setTimeout(() => {
+
+        photo.classList.add('is-visible');
+
+      }, accumulatedDelay);
+
+    });
+
+
+
+    /*
+      마지막 사진 등장 후 잠시 완성 상태 유지
+      그 후 다시 시작
+    */
+
+    const totalDuration =
+      Math.max(accumulatedDelay + 1800, 5000);
+
+
+    setTimeout(() => {
+
+      playCollage();
+
+    }, totalDuration);
+
+  }
+
+
+
+  /* 이미지 모두 로드된 뒤 시작 */
+
+  Promise.all(
+
+    photoElements.map((img) => {
+
+      if (img.complete) {
+
+        return Promise.resolve();
+
+      }
+
+      return new Promise((resolve) => {
+
+        img.onload = resolve;
+        img.onerror = resolve;
+
+      });
+
+    })
+
+  ).then(() => {
+
+    playCollage();
+
+  });
+
 
   continue;
 }
