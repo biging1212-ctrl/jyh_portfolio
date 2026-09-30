@@ -87,6 +87,144 @@ const VIDEO_PAGES = new Set([
   60, 62, 66, 70, 77, 78
 ]);
 
+// ── Project Start Page Meta ──
+const PROJECT_START_META = {
+
+  3: {
+    category: 'PACKAGE PROJECT',
+    title: 'BIBIGO KIMCHI SAUCE',
+    period: '2026.01',
+    scope: 'Personal Study, 100%',
+    tool: 'Figma, Illustrator, Photoshop,<br>C4D, Gpt, Midjourney',
+    theme: 'light'
+  },
+
+  20: {
+    category: 'BRAND PACKAGE PROJECT',
+    title: 'OATERY',
+    period: '2026.07',
+    scope: 'Personal Study, 100%',
+    tool: 'Figma, Illustrator, Photoshop,<br>C4D, Gpt, Higgsfield AI',
+    theme: 'light'
+  },
+
+  35: {
+    category: 'BRAND PACKAGE PROJECT',
+    title: 'Winkle 윙클',
+    period: '2023, 2025',
+    scope: 'Personal Study, 100%',
+    tool: 'Figma, Illustrator, Photoshop,<br>After Effects, Blender, Gpt,<br>Nanobanana',
+    theme: 'light'
+  },
+
+  52: {
+    category: 'CONTENT PROJECT',
+    title: 'Orion 오리온',
+    period: '2025.01 - 2025.08',
+    scope: 'Created at Bigpictureteam,<br>Personal Scope 100%',
+    tool: 'Figma, Illustrator,<br>Photoshop, After effects',
+    theme: 'light'
+  },
+
+  58: {
+    category: 'POP-UP PROJECT',
+    title: '삼쩜삼 모두의 연말정산',
+    period: '2024.10 - 2024.12',
+    scope: 'Created at Bigpictureteam,<br>Personal Scope 70%',
+    tool: 'Figma, Illustrator, Photoshop,<br>After Effects',
+    theme: 'dark'
+  },
+
+  67: {
+    category: 'REBRANDING PROJECT',
+    title: 'BIGPICTURETEAM',
+    period: '2024.11 - 2025.02',
+    scope: 'Created at Bigpictureteam,<br>Personal Scope 60%',
+    tool: 'Figma, Illustrator, Photoshop,<br>After Effects, Blender',
+    theme: 'light'
+  }
+
+};
+
+// ── Project Start Page Header ──
+function addProjectStartHeader(slot, pageNum) {
+
+  const data = PROJECT_START_META[pageNum];
+
+  // 시작 페이지가 아니면 아무것도 만들지 않음
+  if (!data) return;
+
+
+  const header = document.createElement('div');
+
+  header.className =
+    `project-start-header project-start-header--${data.theme}`;
+
+
+  header.innerHTML = `
+
+    <div class="project-start-left">
+
+      <div class="project-start-category">
+        ${data.category}
+      </div>
+
+      <div class="project-start-title">
+        ${data.title}
+      </div>
+
+    </div>
+
+
+    <div class="project-start-meta">
+
+      <div class="project-start-meta-item">
+
+        <div class="project-start-meta-label">
+          PERIOD
+        </div>
+
+        <div class="project-start-meta-value">
+          ${data.period}
+        </div>
+
+      </div>
+
+
+      <div class="project-start-meta-item">
+
+        <div class="project-start-meta-label">
+          SCOPE
+        </div>
+
+        <div class="project-start-meta-value">
+          ${data.scope}
+        </div>
+
+      </div>
+
+
+      <div class="project-start-meta-item project-start-meta-tool">
+
+        <div class="project-start-meta-label">
+          TOOL
+        </div>
+
+        <div class="project-start-meta-value">
+          ${data.tool}
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  slot.appendChild(header);
+}
+
+
 // ── Load saved slots from localStorage ──
 function loadSaved() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -102,13 +240,14 @@ const section = document.getElementById('portfolio');
 const saved   = loadSaved();
 
 for (let i = 1; i <= TOTAL_PAGES; i++) {
-  const pageNum = i + 1; // pages 2–52
+  const pageNum = i + 1; // pages 2–78
   const slot    = document.createElement('div');
   slot.className   = 'portfolio-slot';
   slot.dataset.index = i;
 
   // 모든 페이지에 이동용 id 부여: page-02, page-03, page-21 ...
 slot.id = `page-${String(pageNum).padStart(2, '0')}`;
+addProjectStartHeader(slot, pageNum);
 
   // page number badge
 // page-02에서는 표시하지 않음
