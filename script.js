@@ -82,7 +82,7 @@ const FINAL_PAGE_TOTAL = 79;
 const STORAGE_KEY = 'portfolio_slots';
 
 const VIDEO_PAGES = new Set([
-  10, 15, 16, 33, 36,
+  15, 16, 33, 36,
   50, 54, 55, 56,
   60, 62, 70, 77, 78
 ]);
@@ -267,6 +267,84 @@ if (pageNum === 2) {
   continue;
 }
 
+  // ── PAGE 10: 4 IMAGE INSTANT SWITCH ──
+if (pageNum === 10) {
+
+  slot.classList.add('page10-switch-page');
+
+  const slideshow = document.createElement('div');
+  slideshow.className = 'page10-switch';
+
+  const slideImages = [
+    'assets/images/page-10-01.png',
+    'assets/images/page-10-02.png',
+    'assets/images/page-10-03.png',
+    'assets/images/page-10-04.png'
+  ];
+
+  const slides = [];
+
+
+  slideImages.forEach((src, index) => {
+
+    const img = document.createElement('img');
+
+    img.src = src;
+    img.alt = '';
+    img.className = 'page10-slide';
+
+    if (index === 0) {
+      img.classList.add('is-active');
+    }
+
+    slideshow.appendChild(img);
+
+    slides.push(img);
+  });
+
+
+  slot.appendChild(slideshow);
+  section.appendChild(slot);
+
+
+  // 4장의 이미지가 전부 로드된 후 전환 시작
+  Promise.all(
+    slides.map((img) => {
+
+      if (img.complete) {
+        return Promise.resolve();
+      }
+
+      return new Promise((resolve) => {
+        img.onload = resolve;
+        img.onerror = resolve;
+      });
+
+    })
+  ).then(() => {
+
+    let currentSlide = 0;
+
+    setInterval(() => {
+
+      const nextSlide =
+        (currentSlide + 1) % slides.length;
+
+
+      // 현재 이미지 숨기기
+      slides[currentSlide].classList.remove('is-active');
+
+      // 다음 이미지 즉시 표시
+      slides[nextSlide].classList.add('is-active');
+
+
+      currentSlide = nextSlide;
+
+    }, 3000);
+
+  });
+
+  
   // ── PAGE 19: 4 IMAGE SLIDESHOW ──
 if (pageNum === 19) {
 
