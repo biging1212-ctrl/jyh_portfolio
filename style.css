@@ -521,31 +521,37 @@ img, video { display: block; width: 100%; }
 }
 
 
-/* 각각의 이미지 */
+/* 모든 슬라이드 */
 
 .portfolio-slot .page19-slide {
   position: absolute;
 
-  top: 0;
-  left: 0;
+  inset: 0;
 
   width: 100%;
   height: 100%;
 
   object-fit: contain;
 
+  display: block;
+
   opacity: 0;
+
+  z-index: 1;
 
   transition: opacity 0.4s ease;
 
-  display: block;
+  /* 기존 공통 img transition 영향 방지 */
+  visibility: visible;
 }
 
 
-/* 현재 보이는 이미지 */
+/* 현재 표시되는 슬라이드 */
 
 .portfolio-slot .page19-slide.is-active {
   opacity: 1;
+
+  z-index: 2;
 }
 
 /* ── PAGE 31 : 2 IMAGE SLIDESHOW ── */
