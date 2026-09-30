@@ -84,7 +84,7 @@ const STORAGE_KEY = 'portfolio_slots';
 const VIDEO_PAGES = new Set([
   10, 15, 16, 33, 36,
   50, 54, 55, 56,
-  60, 62, 66, 70, 77, 78
+  60, 62, 70, 77, 78
 ]);
 
 // ── Project Start Page Meta ──
