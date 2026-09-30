@@ -598,6 +598,148 @@ img, video { display: block; width: 100%; }
   opacity: 1;
 }
 
+/* ─────────────────────────────
+   PROJECT START PAGE HEADER
+───────────────────────────── */
+
+.project-start-header {
+  position: absolute;
+
+  /* PAGE 01 / PAGE 02와 동일한 상단 라인 */
+  top: 10%;
+
+  /* 1920 기준 좌우 100px */
+  left: 5.2083%;
+  right: 5.2083%;
+
+  z-index: 30;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  font-family: var(--font);
+
+  line-height: normal;
+
+  pointer-events: none;
+}
+
+
+/* ── 왼쪽 : PROJECT TYPE + PROJECT NAME ── */
+
+.project-start-left {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+
+  text-align: left;
+}
+
+
+.project-start-category {
+  font-family: var(--font);
+
+  font-size: clamp(12px, 0.729167cqw, 14px);
+
+  font-weight: 500;
+
+  line-height: 1.2;
+
+  letter-spacing: 0;
+
+  white-space: nowrap;
+}
+
+
+.project-start-title {
+  font-family: var(--font);
+
+  font-size: clamp(15px, 0.9375cqw, 18px);
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  letter-spacing: -0.01em;
+
+  white-space: nowrap;
+}
+
+
+/* ── 오른쪽 : PERIOD / SCOPE / TOOL ── */
+
+.project-start-meta {
+  width: 36%;
+
+  display: grid;
+
+  grid-template-columns:
+    0.85fr
+    1fr
+    1.25fr;
+
+  column-gap: clamp(28px, 2.5vw, 48px);
+
+  align-items: start;
+}
+
+
+.project-start-meta-item {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  text-align: left;
+}
+
+
+/* PERIOD / SCOPE / TOOL */
+
+.project-start-meta-label {
+  font-family: var(--font);
+
+  font-size: clamp(12px, 0.729167cqw, 14px);
+
+  font-weight: 500;
+
+  line-height: 1.2;
+
+  white-space: nowrap;
+}
+
+
+/* 실제 정보 */
+
+.project-start-meta-value {
+  font-family: var(--font);
+
+  font-size: clamp(10px, 0.625cqw, 12px);
+
+  font-weight: 400;
+
+  line-height: 1.35;
+
+  letter-spacing: 0;
+}
+
+
+/* 어두운 배경 페이지 */
+
+.project-start-header--light {
+  color: #ffffff;
+}
+
+
+/* 삼쩜삼처럼 밝은 배경 페이지 */
+
+.project-start-header--dark {
+  color: #263342;
+}
+
+
 /* Upload zone */
 .upload-zone {
   position: absolute;
