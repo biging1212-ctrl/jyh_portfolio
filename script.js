@@ -82,7 +82,7 @@ const FINAL_PAGE_TOTAL = 79;
 const STORAGE_KEY = 'portfolio_slots';
 
 const VIDEO_PAGES = new Set([
-  6, 10, 15, 16, 31, 33, 36, 38,
+  6, 10, 15, 16, 33, 36, 38,
   42, 43, 44, 47, 50, 54, 55, 56,
   60, 62, 66, 70, 77, 78
 ]);
@@ -128,7 +128,111 @@ if (pageNum === 2) {
   continue;
 }
 
-    // ── PAGE 48: YouTube Video ──
+  // ── PAGE 19: Image Slideshow ──
+if (pageNum === 19) {
+
+  slot.classList.add('page19-slideshow-page');
+
+  const slideshow = document.createElement('div');
+  slideshow.className = 'page19-slideshow';
+
+  const slideImages = [
+    'assets/images/page-19-01.png',
+    'assets/images/page-19-02.png',
+    'assets/images/page-19-03.png',
+    'assets/images/page-19-04.png'
+  ];
+
+  slideImages.forEach((src, index) => {
+
+    const img = document.createElement('img');
+
+    img.src = src;
+    img.alt = '';
+    img.className = 'page19-slide';
+
+    if (index === 0) {
+      img.classList.add('is-active');
+    }
+
+    slideshow.appendChild(img);
+
+  });
+
+  slot.appendChild(slideshow);
+  section.appendChild(slot);
+
+
+  // 2초마다 이미지 변경
+  const slides = slideshow.querySelectorAll('.page19-slide');
+
+  let currentSlide = 0;
+
+  setInterval(() => {
+
+    slides[currentSlide].classList.remove('is-active');
+
+    currentSlide =
+      (currentSlide + 1) % slides.length;
+
+    slides[currentSlide].classList.add('is-active');
+
+  }, 2000);
+
+
+  continue;
+}
+
+  // ── PAGE 31: 2 IMAGE SLIDESHOW ──
+if (pageNum === 31) {
+
+  slot.classList.add('page31-slideshow-page');
+
+  const slideshow = document.createElement('div');
+  slideshow.className = 'page31-slideshow';
+
+  const slideImages = [
+    'assets/images/page-31-01.png',
+    'assets/images/page-31-02.png'
+  ];
+
+  slideImages.forEach((src, index) => {
+
+    const img = document.createElement('img');
+
+    img.src = src;
+    img.alt = '';
+    img.className = 'page31-slide';
+
+    if (index === 0) {
+      img.classList.add('is-active');
+    }
+
+    slideshow.appendChild(img);
+  });
+
+  slot.appendChild(slideshow);
+  section.appendChild(slot);
+
+  const slides = slideshow.querySelectorAll('.page31-slide');
+
+  let currentSlide = 0;
+
+  setInterval(() => {
+
+    slides[currentSlide].classList.remove('is-active');
+
+    currentSlide = (currentSlide + 1) % slides.length;
+
+    slides[currentSlide].classList.add('is-active');
+
+  }, 2000);
+
+  continue;
+}
+
+  
+  // ── PAGE 48: YouTube Video ──
 if (pageNum === 48) {
   slot.classList.add('youtube-page');
 
