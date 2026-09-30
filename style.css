@@ -649,7 +649,7 @@ img, video { display: block; width: 100%; }
 
   font-size: clamp(12px, 0.729167cqw, 14px);
 
-  font-weight: 500;
+  font-weight: 600; /* SemiBold */
 
   line-height: 1.2;
 
@@ -709,7 +709,7 @@ img, video { display: block; width: 100%; }
 
   font-size: clamp(12px, 0.729167cqw, 14px);
 
-  font-weight: 500;
+  font-weight: 600; /* SemiBold */
 
   line-height: 1.2;
 
@@ -722,7 +722,7 @@ img, video { display: block; width: 100%; }
 .project-start-meta-value {
   font-family: var(--font);
 
-  font-size: clamp(10px, 0.625cqw, 12px);
+  font-size: clamp(12px, 0.625cqw, 14px);
 
   font-weight: 400;
 
