@@ -502,6 +502,92 @@ img, video { display: block; width: 100%; }
   display: block;
 }
 
+/* ── PAGE 19 : 4 IMAGE SLIDESHOW ── */
+
+.page19-slideshow-page {
+  position: relative;
+  background: #000000;
+}
+
+
+.page19-slideshow {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+
+/* 각각의 이미지 */
+
+.portfolio-slot .page19-slide {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  opacity: 0;
+
+  transition: opacity 0.4s ease;
+
+  display: block;
+}
+
+
+/* 현재 보이는 이미지 */
+
+.portfolio-slot .page19-slide.is-active {
+  opacity: 1;
+}
+
+/* ── PAGE 31 : 2 IMAGE SLIDESHOW ── */
+
+.page31-slideshow-page {
+  position: relative;
+  background: #000000;
+}
+
+.page31-slideshow {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+.portfolio-slot .page31-slide {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  opacity: 0;
+
+  transition: opacity 0.4s ease;
+
+  display: block;
+}
+
+.portfolio-slot .page31-slide.is-active {
+  opacity: 1;
+}
+
+
 /* fade in when image loads */
 .portfolio-slot img {
   opacity: 0;
