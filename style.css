@@ -851,12 +851,12 @@ img, video { display: block; width: 100%; }
 }
 
 .page02-kicker-left {
-  left: 10.4167%;          /* 200 / 1920 */
+  left: 5.2083%;   /* 100 / 1920 */
   text-align: left;
 }
 
 .page02-kicker-right {
-  right: 10.4167%;         /* 200 / 1920 */
+  right: 5.2083%;  /* 100 / 1920 */
   text-align: right;
 }
 
@@ -892,7 +892,7 @@ img, video { display: block; width: 100%; }
 .page02-contact {
   position: absolute;
   left: 50%;
-  top: 16.1%;
+  top: calc(16.1% + 4px);
   transform: translateX(-50%);
 
   font-family: 'Pretendard', var(--font), sans-serif;
