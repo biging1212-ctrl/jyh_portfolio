@@ -612,7 +612,7 @@ img, video { display: block; width: 100%; }
   position: absolute;
 
   /* PAGE 01 / PAGE 02와 동일한 상단 라인 */
-  top: 10%;
+  top: 9.2593%;    /* 100 / 1080 */
 
   /* 1920 기준 좌우 100px */
   left: 5.2083%;
@@ -638,7 +638,7 @@ img, video { display: block; width: 100%; }
   display: flex;
   flex-direction: column;
 
-  gap: 7px;
+  gap: 5px;
 
   text-align: left;
 }
@@ -662,7 +662,7 @@ img, video { display: block; width: 100%; }
 .project-start-title {
   font-family: var(--font);
 
-  font-size: clamp(15px, 0.9375cqw, 18px);
+  font-size: clamp(17px, 1.041667cqw, 20px);
 
   font-weight: 700;
 
