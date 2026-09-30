@@ -638,7 +638,7 @@ img, video { display: block; width: 100%; }
   display: flex;
   flex-direction: column;
 
-  gap: 5px;
+  gap: 8px;
 
   text-align: left;
 }
@@ -677,16 +677,13 @@ img, video { display: block; width: 100%; }
 /* ── 오른쪽 : PERIOD / SCOPE / TOOL ── */
 
 .project-start-meta {
-  width: 36%;
+  width: 39%;
 
   display: grid;
 
-  grid-template-columns:
-    0.85fr
-    1fr
-    1.25fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 
-  column-gap: clamp(28px, 2.5vw, 48px);
+  column-gap: clamp(50px, 3.333cqw, 64px);
 
   align-items: start;
 }
@@ -696,7 +693,7 @@ img, video { display: block; width: 100%; }
   display: flex;
   flex-direction: column;
 
-  gap: 10px;
+  gap: 8px;
 
   text-align: left;
 }
@@ -722,13 +719,15 @@ img, video { display: block; width: 100%; }
 .project-start-meta-value {
   font-family: var(--font);
 
-  font-size: clamp(12px, 0.625cqw, 14px);
+  font-size: clamp(12px, 0.729167cqw, 14px);
 
   font-weight: 400;
 
   line-height: 1.35;
 
   letter-spacing: 0;
+
+  white-space: nowrap;
 }
 
 
