@@ -267,7 +267,7 @@ if (pageNum === 2) {
   continue;
 }
 
-  // ── PAGE 19: Image Slideshow ──
+  // ── PAGE 19: 4 IMAGE SLIDESHOW ──
 if (pageNum === 19) {
 
   slot.classList.add('page19-slideshow-page');
@@ -282,6 +282,10 @@ if (pageNum === 19) {
     'assets/images/page-19-04.png'
   ];
 
+
+  const slides = [];
+
+
   slideImages.forEach((src, index) => {
 
     const img = document.createElement('img');
@@ -290,33 +294,84 @@ if (pageNum === 19) {
     img.alt = '';
     img.className = 'page19-slide';
 
+    /* 미리 로딩 */
+    img.loading = 'eager';
+    img.decoding = 'async';
+
     if (index === 0) {
       img.classList.add('is-active');
     }
 
     slideshow.appendChild(img);
 
+    slides.push(img);
   });
+
 
   slot.appendChild(slideshow);
   section.appendChild(slot);
 
 
-  // 2초마다 이미지 변경
-  const slides = slideshow.querySelectorAll('.page19-slide');
+  /* ── 이미지 4장을 전부 미리 캐싱 ── */
 
-  let currentSlide = 0;
+  const preloadPromises = slideImages.map((src) => {
 
-  setInterval(() => {
+    return new Promise((resolve) => {
 
-    slides[currentSlide].classList.remove('is-active');
+      const preload = new Image();
 
-    currentSlide =
-      (currentSlide + 1) % slides.length;
+      preload.onload = resolve;
+      preload.onerror = resolve;
 
-    slides[currentSlide].classList.add('is-active');
+      preload.src = src;
 
-  }, 2000);
+    });
+
+  });
+
+
+  Promise.all(preloadPromises).then(() => {
+
+    let currentSlide = 0;
+
+    const DISPLAY_TIME = 2000;
+    const FADE_TIME = 400;
+
+
+    setInterval(() => {
+
+      const previousSlide = currentSlide;
+
+      const nextSlide =
+        (currentSlide + 1) % slides.length;
+
+
+      /*
+        핵심:
+        기존 이미지를 먼저 없애지 않고
+        다음 이미지를 그 위에 먼저 보여줌
+      */
+
+      slides[nextSlide].classList.add('is-active');
+
+
+      /*
+        다음 이미지가 완전히 올라온 뒤
+        이전 이미지 제거
+      */
+
+      setTimeout(() => {
+
+        slides[previousSlide].classList.remove('is-active');
+
+      }, FADE_TIME);
+
+
+      currentSlide = nextSlide;
+
+    }, DISPLAY_TIME);
+
+  });
 
 
   continue;
