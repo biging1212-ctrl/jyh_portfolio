@@ -347,7 +347,7 @@ if (pageNum === 10) {
   continue;
 }
 
-  PAGE 10과 PAGE 19 사이에 아래를 넣으세요.
+  
 // ── PAGE 15: RANDOM PHOTO COLLAGE ──
 if (pageNum === 15) {
 
