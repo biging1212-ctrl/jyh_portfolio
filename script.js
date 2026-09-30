@@ -344,6 +344,9 @@ if (pageNum === 10) {
 
   });
 
+  continue;
+}
+
   
   // ── PAGE 19: 4 IMAGE SLIDESHOW ──
 if (pageNum === 19) {
