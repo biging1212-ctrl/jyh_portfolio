@@ -502,6 +502,57 @@ img, video { display: block; width: 100%; }
   display: block;
 }
 
+/* ─────────────────────────────
+   PAGE 10 : 4 IMAGE INSTANT SWITCH
+───────────────────────────── */
+
+.page10-switch-page {
+  position: relative;
+
+  background: #000000;
+}
+
+
+.page10-switch {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+
+/* 모든 이미지 */
+
+.portfolio-slot .page10-slide {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  display: none;
+
+  opacity: 1 !important;
+
+  transition: none !important;
+}
+
+
+/* 현재 이미지 */
+
+.portfolio-slot .page10-slide.is-active {
+  display: block;
+
+  opacity: 1 !important;
+}
+
 /* ── PAGE 19 : 4 IMAGE SLIDESHOW ── */
 
 .page19-slideshow-page {
