@@ -109,7 +109,7 @@ const PROJECT_START_META = {
 
   35: {
     category: 'BRAND PACKAGE PROJECT',
-    title: 'Winkle 윙클',
+    title: 'WINKLE 윙클',
     period: '2023, 2025',
     scope: 'Personal Study, 100%',
     tool: 'Figma, Illustrator, Photoshop,<br>After Effects, Blender, Gpt,<br>Nanobanana',
@@ -118,7 +118,7 @@ const PROJECT_START_META = {
 
   52: {
     category: 'CONTENT PROJECT',
-    title: 'Orion 오리온',
+    title: 'ORION 오리온',
     period: '2025.01 - 2025.08',
     scope: 'Created at Bigpictureteam,<br>Personal Scope 100%',
     tool: 'Figma, Illustrator,<br>Photoshop, After effects',
