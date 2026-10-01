@@ -178,6 +178,12 @@ const PAGE_SECTION_META = {
     theme: 'light'
   },
 
+  38: {
+  title: 'BRAND ESSENCE',
+  body: '',
+  theme: 'light'
+  },
+  
   39: {
     title: 'BRAND CORE VALUE',
     body: '건강을 의식하는 선택이 절대 부담으로 느껴지지 않도록, 밝은 에너지와 가벼운 선택, 유쾌한 즐거움을 핵심 가치로 설정했습니다. 과일과 채소가 주는 산뜻한 이미지와 제로 음료의 부담 없는 특성을 바탕으로, 일상에서 편하게 고르고 기분 좋게 즐길 수 있는 브랜드 경험을 만들고자 했습니다.',
