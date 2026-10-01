@@ -1049,6 +1049,162 @@ if (pageNum === 31) {
   continue;
 }
 
+  // ── PAGE 33: OATERY CARD MOTION ──
+if (pageNum === 33) {
+
+  slot.classList.add('page33-motion-page');
+
+  const stage = document.createElement('div');
+  stage.className = 'page33-stage';
+
+
+  // ── Figma 기준값 : 1920 × 1080 ──
+  const FIGMA_W = 1920;
+  const FIGMA_H = 1080;
+
+  const CARD_W = 341;
+  const CARD_H = 500;
+
+
+  const cards = [
+    {
+      x: 198,
+      y: 290,
+      base: 'assets/images/page-33-1.png',
+      motion: 'assets/images/page-33-1b.png'
+    },
+    {
+      x: 592,
+      y: 290,
+      base: 'assets/images/page-33-2.png',
+      motion: 'assets/images/page-33-2b.png'
+    },
+    {
+      x: 986,
+      y: 290,
+      base: 'assets/images/page-33-3.png',
+      motion: 'assets/images/page-33-3b.png'
+    },
+    {
+      x: 1380,
+      y: 290,
+      base: 'assets/images/page-33-4.png',
+      motion: 'assets/images/page-33-4b.png'
+    }
+  ];
+
+
+  const page33Images = [];
+
+
+  cards.forEach((card, index) => {
+
+    // 공통 위치/크기 적용 함수
+    function setCardPosition(el) {
+
+      el.style.left =
+        `${(card.x / FIGMA_W) * 100}%`;
+
+      el.style.top =
+        `${(card.y / FIGMA_H) * 100}%`;
+
+      el.style.width =
+        `${(CARD_W / FIGMA_W) * 100}%`;
+
+      el.style.height =
+        `${(CARD_H / FIGMA_H) * 100}%`;
+    }
+
+
+    // ── 기본 이미지 : 1 / 2 / 3 / 4 ──
+    const base = document.createElement('img');
+
+    base.src = card.base;
+    base.alt = '';
+    base.className =
+      `page33-card page33-card-base page33-card-base--${index + 1}`;
+
+    setCardPosition(base);
+
+
+    // ── 모션 이미지 : 1b / 2b / 3b / 4b ──
+    const motion = document.createElement('img');
+
+    motion.src = card.motion;
+    motion.alt = '';
+    motion.className =
+      `page33-card page33-card-motion page33-card-motion--${index + 1}`;
+
+    setCardPosition(motion);
+
+
+    // 기본 → b 순서로 겹침
+    stage.appendChild(base);
+    stage.appendChild(motion);
+
+    page33Images.push(base, motion);
+  });
+
+
+  slot.appendChild(stage);
+
+  section.appendChild(slot);
+
+
+  // ── 이미지가 로드된 뒤 모션 감지 시작 ──
+  const waitForImage = (img) => {
+
+    if (img.complete) {
+      return Promise.resolve();
+    }
+
+    return new Promise((resolve) => {
+      img.onload = resolve;
+      img.onerror = resolve;
+    });
+  };
+
+
+  Promise.all(
+    page33Images.map(waitForImage)
+  ).then(() => {
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach((entry) => {
+
+          if (entry.isIntersecting) {
+
+            // 다시 진입했을 때 모션 처음부터 재생
+            slot.classList.remove('is-active');
+
+            void slot.offsetWidth;
+
+            slot.classList.add('is-active');
+
+          } else {
+
+            slot.classList.remove('is-active');
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.35
+      }
+    );
+
+
+    observer.observe(slot);
+
+  });
+
+
+  continue;
+}
   
   // ── PAGE 48: YouTube Video ──
 if (pageNum === 48) {
