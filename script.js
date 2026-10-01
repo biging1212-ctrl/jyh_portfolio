@@ -215,6 +215,38 @@ const PAGE_SECTION_META = {
     accent: '#E60012'
   },
 
+  54: {
+  title: 'TYPE 01',
+  subtitle: '신상선발대 / 크루 모집',
+  body: '',
+  theme: 'light',
+  accent: '#E60012'
+  },
+
+55: {
+  title: 'TYPE 02',
+  subtitle: '소비자 참여를 만드는 반응형 콘텐츠',
+  body: '',
+  theme: 'light',
+  accent: '#E60012'
+  },
+
+56: {
+  title: 'TYPE 03',
+  subtitle: '시즌 이슈와 브랜드를 연결하는 콘텐츠',
+  body: '',
+  theme: 'light',
+  accent: '#E60012'
+  },
+
+57: {
+  title: 'TYPE 04',
+  subtitle: '신제품을 빠르게 전달하는 콘텐츠',
+  body: '',
+  theme: 'light',
+  accent: '#E60012'
+  },
+
   59: {
     title: 'PROJECT OVERVIEW',
     body: '‘모두의 연말정산’은 어렵고 딱딱하게 느껴질 수 있는 연말정산을 2030 세대가 자신의 한 해를 돌아보고 기록하는 경험으로 풀어낸 삼쩜삼의 팝업스토어입니다. 세금이라는 소재를 보다 친근하게 경험하며 브랜드의 공감과 친밀감을 느낄 수 있도록 기획되었습니다. 초기 아이데이션에 참여해 제안한 콘셉트 스토리가 프로젝트의 주 방향으로 채택되었으며, 이를 바탕으로 키비주얼부터 굿즈, 현장 그래픽을 담당했습니다.',
@@ -363,11 +395,18 @@ function addPageSectionText(slot, pageNum) {
     >
       ${data.title}
     </div>
-
-
-    <div class="page-section-body">
-      ${data.body}
+    
+      ${data.subtitle ? `
+    <div class="page-section-subtitle">
+       ${data.subtitle}
     </div>
+  ` : ''}
+  
+      ${data.body ? `
+    <div class="page-section-body">
+       ${data.body}
+    </div>
+  ` : ''}
 
   `;
 
