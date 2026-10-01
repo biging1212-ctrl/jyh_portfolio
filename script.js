@@ -536,6 +536,84 @@ if (pageNum === 2) {
   continue;
 }
 
+  // ── PAGE 06: KIMCHI SAUCE LOGO MOTION ──
+if (pageNum === 6) {
+
+  slot.classList.add('page06-motion-page');
+
+  const stack = document.createElement('div');
+  stack.className = 'page06-stack';
+
+
+  // 1. BACKGROUND
+  const bg = document.createElement('img');
+
+  bg.src = 'assets/images/page-06-bg.png';
+  bg.alt = '';
+  bg.className = 'page06-layer page06-bg';
+
+
+  // 2. ANIMATED LOGO
+  const logo = document.createElement('img');
+
+  logo.src = 'assets/images/page-06-logo.png';
+  logo.alt = '';
+  logo.className = 'page06-layer page06-logo';
+
+
+  // 3. FOREGROUND OBJECT
+  const object = document.createElement('img');
+
+  object.src = 'assets/images/page-06-object.png';
+  object.alt = '';
+  object.className = 'page06-layer page06-object';
+
+
+  // 레이어 순서 중요
+  stack.appendChild(bg);
+  stack.appendChild(logo);
+  stack.appendChild(object);
+
+  slot.appendChild(stack);
+
+  section.appendChild(slot);
+
+
+  // 화면 진입 시 모션 실행
+  const observer = new IntersectionObserver(
+    (entries) => {
+
+      entries.forEach((entry) => {
+
+        if (entry.isIntersecting) {
+
+          slot.classList.remove('is-active');
+
+          // 모션 재시작
+          void slot.offsetWidth;
+
+          slot.classList.add('is-active');
+
+        } else {
+
+          slot.classList.remove('is-active');
+
+        }
+
+      });
+
+    },
+    {
+      threshold: 0.35
+    }
+  );
+
+
+  observer.observe(slot);
+
+  continue;
+}
+
   // ── PAGE 10: 4 IMAGE INSTANT SWITCH ──
 if (pageNum === 10) {
 
