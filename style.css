@@ -1527,3 +1527,119 @@ img, video { display: block; width: 100%; }
 
   z-index: 6;
 }
+
+/* ─────────────────────────────
+   PAGE 06 : KIMCHI SAUCE MOTION
+───────────────────────────── */
+
+.page06-motion-page {
+  position: relative;
+  background: #000000;
+  overflow: hidden;
+}
+
+
+/* 1920×1080 레이어 전체를 그대로 겹침 */
+.page06-stack {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+
+/* 공통 */
+.portfolio-slot .page06-layer {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  display: block;
+
+  opacity: 1;
+
+  pointer-events: none;
+}
+
+
+/* ── 레이어 순서 ── */
+
+.portfolio-slot .page06-bg {
+  z-index: 1;
+}
+
+.portfolio-slot .page06-logo {
+  z-index: 2;
+}
+
+.portfolio-slot .page06-object {
+  z-index: 3;
+}
+
+/* ── LOGO INITIAL STATE ── */
+
+.portfolio-slot .page06-logo {
+  transform: scale(2);
+
+  transform-origin: 50% 50%;
+
+  opacity: 0;
+}
+
+
+/* ── PAGE ENTER ── */
+
+.page06-motion-page.is-active .page06-logo {
+
+  animation:
+    page06LogoScale
+      1300ms
+      cubic-bezier(.59, 0, .08, 1)
+      183ms
+      forwards,
+
+    page06LogoOpacity
+      1500ms
+      cubic-bezier(.3, 0, .45, .65)
+      300ms
+      forwards;
+}
+
+
+/* SCALE : 200% → 100% */
+
+@keyframes page06LogoScale {
+
+  from {
+    transform: scale(2);
+  }
+
+  to {
+    transform: scale(1);
+  }
+
+}
+
+
+/* OPACITY : 0 → 100% */
+
+@keyframes page06LogoOpacity {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
