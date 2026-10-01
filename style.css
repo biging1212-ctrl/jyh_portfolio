@@ -1020,22 +1020,17 @@ img, video { display: block; width: 100%; }
 .page-section-body {
   position: absolute;
 
-  /*
-    전체 화면 기준:
-    제목 영역 시작 = 100px
-    본문 시작 = 850px
+  /* Figma 1920 기준:
+     본문 시작 X = 850px
+     부모 시작 X = 100px
+     → 내부 이동값 750px */
+  left: 39.0625cqw;
 
-    부모 내부에서는:
-    850 - 100 = 750px
+  /* 화면 우측 마진 150px
+     부모 자체 우측 마진이 100px이므로
+     → 추가 50px */
+  right: 2.604167cqw;
 
-    부모 폭:
-    1920 - 100 - 100 = 1720px
-
-    750 / 1720 = 43.6047%
-  */
-  left: 43.6047%;
-
-  right: 0;
   top: 0;
 
   font-family: 'Pretendard', var(--font), sans-serif;
@@ -1048,7 +1043,6 @@ img, video { display: block; width: 100%; }
 
   letter-spacing: -0.01em;
 }
-
 
 /* ── BLACK BACKGROUND ── */
 
