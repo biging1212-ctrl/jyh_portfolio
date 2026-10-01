@@ -317,7 +317,7 @@ const PAGE_SECTION_META = {
   },
 
   40: {
-    title: 'BRAND VISUAL',
+    title: 'BRAND LOGO',
     body: '',
     theme: 'light'
   },
@@ -600,11 +600,8 @@ if (pageNum === 10) {
         (currentSlide + 1) % slides.length;
 
 
-      // 현재 이미지 숨기기
-      slides[currentSlide].classList.remove('is-active');
-
-      // 다음 이미지 즉시 표시
       slides[nextSlide].classList.add('is-active');
+      slides[currentSlide].classList.remove('is-active');
 
 
       currentSlide = nextSlide;
