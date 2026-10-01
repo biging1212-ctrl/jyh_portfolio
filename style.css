@@ -13,7 +13,7 @@
   --white: #ffffff;
   --col-margin: clamp(40px, 10.417vw, 200px); /* 200px @ 1920px */
   --row-margin: clamp(32px, 9.259vh, 100px);  /* 100px @ 1080px */
-  --font: 'Fustat', system-ui, sans-serif;
+  --font: 'Fustat', 'Pretendard', system-ui, sans-serif;
   --nav-h: 53px; /* fixed nav height */
 }
 
@@ -931,6 +931,18 @@ img, video { display: block; width: 100%; }
 
 .project-start-header--dark {
   color: #263342;
+}
+
+/* ── PAGE 58 TYPOGRAPHY WEIGHT ── */
+
+/* POP-UP PROJECT */
+#page-58 .project-start-category {
+  font-weight: 700;
+}
+
+/* 삼쩜삼 모두의 연말정산 */
+#page-58 .project-start-title {
+  font-weight: 800;
 }
 
 /* ─────────────────────────────
