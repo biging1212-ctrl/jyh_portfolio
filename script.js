@@ -246,6 +246,81 @@ const PAGE_SECTION_META = {
     title: 'IDENTITY GRAPHIC',
     body: '브랜드 아이콘과 그래픽 에셋은 메시지를 직관적으로 전달하고, 일관된 브랜드 이미지를 형성하는 핵심 시각 언어입니다. 로고 심볼의 기본 조형(B, P, T)를 확장하여 다양한 카테고리를 상징하는 그래픽으로 표현했습니다. 카테고리의 표현뿐만 아니라 다양한 인터렉션 요소로 확장할 수 있습니다.',
     theme: 'light'
+  },
+
+  7: {
+    title: 'LOGO TYPE',
+    body: '',
+    theme: 'dark'
+  },
+
+  8: {
+    title: 'DESIGN SYSTEM',
+    body: '',
+    theme: 'dark'
+  },
+
+  10: {
+    title: 'PACKAGE DESIGN',
+    body: '',
+    theme: 'dark'
+  },
+
+  23: {
+    title: 'LOGO TYPEFACE',
+    body: '',
+    theme: 'light'
+  },
+
+  28: {
+    title: 'PACKAGE STRUCTURE',
+    body: '',
+    theme: 'light'
+  },
+
+  40: {
+    title: 'BRAND VISUAL',
+    body: '',
+    theme: 'light'
+  },
+
+  41: {
+    title: 'COLOR SYSTEM',
+    body: '',
+    theme: 'light'
+  },
+
+  49: {
+    title: 'APPLICATION',
+    body: '',
+    theme: 'light'
+  },
+
+  64: {
+    title: 'EVENT STILL',
+    body: '',
+    theme: 'light',
+    accent: '#0862F5'
+    top: '63.6111%'
+  },
+
+  66: {
+    title: 'DISPLAY ADVERTISING',
+    body: '',
+    theme: 'light',
+    accent: '#0862F5'
+  },
+
+  74: {
+    title: 'ICONOGRAPHY',
+    body: '',
+    theme: 'light'
+  },
+
+  76: {
+    title: '3D ASSET',
+    body: '',
+    theme: 'dark'
   }
 
 };
@@ -264,6 +339,10 @@ function addPageSectionText(slot, pageNum) {
     `page-section-text page-section-text--${data.theme}`;
 
 
+  if (data.top) {
+  overlay.style.top = data.top;
+}
+  
   const titleStyle =
     data.accent
       ? `style="color:${data.accent}"`
