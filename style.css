@@ -933,6 +933,100 @@ img, video { display: block; width: 100%; }
   color: #263342;
 }
 
+/* ─────────────────────────────
+   PAGE SECTION TEXT
+───────────────────────────── */
+
+.page-section-text {
+  position: absolute;
+
+  /* 1080 기준 상단 100px */
+  top: 9.2593%;
+
+  /* 1920 기준 좌우 100px */
+  left: 5.2083%;
+  right: 5.2083%;
+
+  z-index: 30;
+
+  font-family: var(--font);
+
+  line-height: normal;
+
+  pointer-events: none;
+}
+
+
+/* ── LEFT TITLE ── */
+
+.page-section-title {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  font-family: var(--font);
+
+  /* 프로젝트 시작 페이지의 프로젝트명과 동일 */
+  font-size: clamp(17px, 1.041667cqw, 20px);
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  letter-spacing: -0.01em;
+
+  white-space: nowrap;
+}
+
+
+/* ── RIGHT BODY ── */
+
+.page-section-body {
+  position: absolute;
+
+  /*
+    전체 화면 기준:
+    제목 영역 시작 = 100px
+    본문 시작 = 850px
+
+    부모 내부에서는:
+    850 - 100 = 750px
+
+    부모 폭:
+    1920 - 100 - 100 = 1720px
+
+    750 / 1720 = 43.6047%
+  */
+  left: 43.6047%;
+
+  right: 0;
+  top: 0;
+
+  font-family: 'Pretendard', var(--font), sans-serif;
+
+  font-size: clamp(12px, 0.729167cqw, 14px);
+
+  font-weight: 400;
+
+  line-height: 1.65;
+
+  letter-spacing: -0.01em;
+}
+
+
+/* ── BLACK BACKGROUND ── */
+
+.page-section-text--dark {
+  color: #ffffff;
+}
+
+
+/* ── LIGHT BACKGROUND ── */
+
+.page-section-text--light {
+  color: #252525;
+}
 
 /* Upload zone */
 .upload-zone {
