@@ -306,7 +306,7 @@ const PAGE_SECTION_META = {
     title: 'EVENT STILL',
     body: '',
     theme: 'light',
-    accent: '#0862F5'
+    accent: '#0862F5',
     top: '63.6111%'
   },
 
