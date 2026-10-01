@@ -1296,33 +1296,16 @@ img, video { display: block; width: 100%; }
 
   transform: translateX(-50%);
 
-  display: flex;
-  align-items: center;
-
-  gap: 34px;
-
   font-family: var(--font);
-
   font-size: min(14px, 0.729167cqw);
+  font-weight: 400;
+
+  line-height: 1.2;
+
+  color: #ffffff;
 
   white-space: nowrap;
 }
-
-
-.closing-web > span {
-  color: #8a8a8a;
-  font-weight: 400;
-}
-
-
-.closing-web a {
-  color: #ffffff;
-  font-weight: 400;
-
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
 
 .closing-web a:hover {
   opacity: 0.6;
