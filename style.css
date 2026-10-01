@@ -979,6 +979,29 @@ img, video { display: block; width: 100%; }
   white-space: nowrap;
 }
 
+/* ── PAGE SECTION SUBTITLE ── */
+
+.page-section-subtitle {
+  position: absolute;
+
+  left: 0;
+
+  /* Figma Y 138px
+     부모 시작점 Y 100px → 38px 아래 */
+  top: min(38px, 1.979167cqw);
+
+  font-family: 'Pretendard', var(--font), sans-serif;
+
+  font-size: clamp(16px, 1.041667cqw, 20px);
+
+  font-weight: 600;
+
+  line-height: 1.2;
+
+  letter-spacing: -0.02em;
+
+  white-space: nowrap;
+}
 
 /* ── RIGHT BODY ── */
 
