@@ -1021,6 +1021,10 @@ img, video { display: block; width: 100%; }
   color: #ffffff;
 }
 
+/* 검정 배경 상세페이지 본문만 더 얇게 */
+.page-section-text--dark .page-section-body {
+  font-weight: 300;
+}
 
 /* ── LIGHT BACKGROUND ── */
 
